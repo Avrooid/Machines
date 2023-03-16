@@ -1,12 +1,14 @@
 package ru.Burakov.Machines.Engines;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class DieselEngine implements Engine{
 
     @Override
     public void getInfo() {
-        System.out.println("This is diesel engine.");
+        log.info("This is diesel engine.");
     }
 }

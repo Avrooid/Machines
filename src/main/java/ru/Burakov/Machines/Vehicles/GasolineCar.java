@@ -11,7 +11,6 @@ import ru.Burakov.Machines.Engines.Engine;
 @Component
 @Slf4j
 public class GasolineCar {
-    @Autowired
     @Qualifier("gasolineEngine")
     private Engine engine;
 

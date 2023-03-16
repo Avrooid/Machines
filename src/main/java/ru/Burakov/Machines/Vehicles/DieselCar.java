@@ -23,7 +23,6 @@ public class DieselCar {
         log.info("Diesel car bean deleted.");
     }
 
-    @Autowired
     public void setEngine(@Qualifier("dieselEngine") Engine engine) {
         this.engine = engine;
     }

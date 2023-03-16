@@ -13,7 +13,6 @@ import ru.Burakov.Machines.Engines.Engine;
 public class ElectricCar {
     private Engine engine;
 
-    @Autowired
     public ElectricCar(@Qualifier("electricEngine") Engine engine) {
         this.engine = engine;
     }
