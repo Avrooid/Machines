@@ -12,13 +12,14 @@ import ru.Burakov.Machines.models.Engines.ElectricEngine;
 import ru.Burakov.Machines.models.Vehicles.ElectricCar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ElectricCarDAO {
-    private ArrayList<ElectricCar> electricCars = new ArrayList<>();
+    private List<ElectricCar> electricCars = new ArrayList<>();
     private int id = 0;
 
-    public ArrayList<ElectricCar> getCars() {
+    public List<ElectricCar> getCars() {
         return electricCars;
     }
 
@@ -29,7 +30,7 @@ public class ElectricCarDAO {
                 orElseThrow(() -> new DaoException("Машина с таким id не найдена."));
     }
 
-    public ElectricCar addCar(ElectricCar electricCar) {
+    public synchronized ElectricCar addCar(ElectricCar electricCar) {
         ElectricEngine electricEngine = electricCar.getEngine();
         electricEngine.setId(++id);
         electricCars.add(electricCar);

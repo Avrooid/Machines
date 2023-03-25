@@ -8,6 +8,8 @@ import ru.Burakov.Machines.models.Vehicles.ElectricCar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -17,7 +19,7 @@ public class CarController {
     private final ElectricCarDAO electricCars;
 
     @GetMapping
-    public ArrayList<ElectricCar> getAllCars() {
+    public List<ElectricCar> getAllCars() {
         return electricCars.getCars();
     }
 
@@ -27,11 +29,11 @@ public class CarController {
     }
 
     @GetMapping("/headers")
-    public HashMap<String, String> getHeaders(@RequestHeader MultiValueMap<String, String> headers) {
-        HashMap<String, String> map = new HashMap<>();
+    public Map<String, String> getHeaders(@RequestHeader MultiValueMap<String, String> headers) {
+        Map<String, String> map = new HashMap<>();
 
         headers.forEach((key, value) -> {
-            map.put(key, value.stream().collect(Collectors.joining("|")));
+            map.put(key, String.join("|", value));
         });
 
         return map;
