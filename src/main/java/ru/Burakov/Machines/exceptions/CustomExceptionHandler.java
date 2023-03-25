@@ -13,6 +13,6 @@ public class CustomExceptionHandler {
     @ExceptionHandler(DaoException.class)
     public ResponseEntity<ResponseError> badGateWayException(DaoException exception) {
         log.error(exception.getMessage(), exception);
-        return new ResponseEntity<>(new ResponseError(exception.getMessage(), HttpStatus.BAD_GATEWAY), HttpStatus.BAD_GATEWAY);
+        return new ResponseEntity<>(new ResponseError(exception.getMessage()), HttpStatus.BAD_GATEWAY);
     }
 }
