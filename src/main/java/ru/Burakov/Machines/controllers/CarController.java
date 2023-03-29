@@ -1,7 +1,9 @@
 package ru.Burakov.Machines.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.MultiValueMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.Burakov.Machines.dao.ElectricCarDAO;
 import ru.Burakov.Machines.models.Vehicles.ElectricCar;
@@ -40,7 +42,7 @@ public class CarController {
     }
 
     @PostMapping("/add")
-    public ElectricCar addCarAndReturn(@RequestBody ElectricCar electricCar) {
+    public ElectricCar addCarAndReturn(@Valid @RequestBody ElectricCar electricCar) {
         return electricCars.addCar(electricCar);
     }
 }

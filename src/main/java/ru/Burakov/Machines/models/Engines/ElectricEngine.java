@@ -1,5 +1,6 @@
 package ru.Burakov.Machines.models.Engines;
 
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ElectricEngine {
-    private String name;
     private int volume;
     private int id;
 }
