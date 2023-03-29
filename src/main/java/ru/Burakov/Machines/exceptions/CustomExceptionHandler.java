@@ -25,7 +25,6 @@ public class CustomExceptionHandler {
     public ResponseEntity<List<ValidationError>> validException(MethodArgumentNotValidException exception) {
         log.error(exception.getMessage());
         List<ValidationError> errors = new ArrayList<>();
-        var test = exception.getBindingResult();
         List<FieldError> validateErrors = exception.getBindingResult().getFieldErrors();
         for (FieldError validateError : validateErrors) {
             errors.add(new ValidationError(validateError.getField(), validateError.getDefaultMessage()));
