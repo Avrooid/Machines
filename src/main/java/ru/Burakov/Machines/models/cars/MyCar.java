@@ -15,7 +15,9 @@ import ru.Burakov.Machines.models.brands.CarBrand;
 public class MyCar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
+    @Column(name = "NAME", nullable = false, unique = true)
     private String name;
     @ManyToOne
     @JoinColumn(name = "CARBRAND_ID")

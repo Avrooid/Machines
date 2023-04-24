@@ -3,6 +3,8 @@ package ru.Burakov.Machines.dao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.Burakov.Machines.models.brands.CarBrand;
+import ru.Burakov.Machines.models.request.BrandRequest;
+import ru.Burakov.Machines.models.response.BrandResponse;
 import ru.Burakov.Machines.repositories.DbCarBrandRepository;
 
 import java.util.List;
@@ -12,8 +14,15 @@ import java.util.List;
 public class DbCarBrandDAO {
     private final DbCarBrandRepository carBrandRepository;
 
-    public CarBrand save(CarBrand carBrand) {
-        return carBrandRepository.save(carBrand);
+    public BrandResponse save(BrandRequest brandRequest) {
+        CarBrand carBrand = CarBrand.builder()
+                .name(brandRequest.getName())
+                .build();
+        carBrandRepository.save(carBrand);
+        return BrandResponse.builder()
+                .id(carBrand.getId())
+                .name(carBrand.getName())
+                .build();
     }
 
     public List<CarBrand> getBrands() {
