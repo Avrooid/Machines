@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "USERS")
 @Data
@@ -18,6 +20,10 @@ public class MyUser {
     private Long id;
     private String username;
     private String password;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_info_role", joinColumns = @JoinColumn(name = "user_info_id"))
+    @Column(name = "role")
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Role> roles;
     private boolean enabled;
 }
