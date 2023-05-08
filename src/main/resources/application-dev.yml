@@ -1,0 +1,5 @@
+profile:
+  value: develop
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_VALUE_DEV}
