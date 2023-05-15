@@ -22,14 +22,4 @@ public class UserController {
     public AuthResponse register(@RequestBody RegisterRequest request) {
         return userService.register(request);
     }
-
-    @GetMapping("/user/api")
-    public AuthResponse getUserWithRoleUser(Principal principal) {
-        return userService.getRoleUser(principal);
-    }
-
-    @GetMapping("/admin/api")
-    public AuthResponse getUserWithRoleAdmin(Principal principal) {
-        return userService.getRoleUser(principal);
-    }
 }

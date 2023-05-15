@@ -2,6 +2,7 @@ package ru.Burakov.Machines.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -30,16 +31,6 @@ public class CarController {
         return electricCars.getCarByEngineId(id);
     }
 
-    @GetMapping("/headers")
-    public Map<String, String> getHeaders(@RequestHeader MultiValueMap<String, String> headers) {
-        Map<String, String> map = new HashMap<>();
-
-        headers.forEach((key, value) -> {
-            map.put(key, String.join("|", value));
-        });
-
-        return map;
-    }
 
     @PostMapping("/add")
     public ElectricCar addCarAndReturn(@Valid @RequestBody ElectricCar electricCar) {
