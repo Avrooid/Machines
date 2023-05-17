@@ -1,0 +1,6 @@
+profile:
+  value: production
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_VALUE_PROD}
