@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.Burakov.Machines.dao.DbCarDAO;
 import ru.Burakov.Machines.models.brands.CarBrand;
 import ru.Burakov.Machines.models.cars.MyCar;
+import ru.Burakov.Machines.models.response.CarPrice;
 import ru.Burakov.Machines.models.response.CarsResponse;
 
 import java.util.ArrayList;
@@ -25,5 +26,10 @@ public class DbCarController {
     @GetMapping("/getAll")
     private List<CarsResponse> getInfo() {
         return carDAO.getInfo();
+    }
+
+    @GetMapping("/{carName}/getPrice")
+    private CarPrice getCarPrice(@PathVariable String carName) {
+        return new CarPrice(carName, carDAO.getPrice(carName));
     }
 }

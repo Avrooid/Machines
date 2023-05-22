@@ -3,4 +3,4 @@ profile:
 
 spring:
   datasource:
-    url: jdbc:postgresql://${POSTGRES_VALUE_PROD}
+    url: jdbc:postgresql://localhost:5432/MachinesDBProd

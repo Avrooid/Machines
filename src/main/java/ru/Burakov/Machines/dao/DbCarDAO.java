@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.Burakov.Machines.models.brands.CarBrand;
 import ru.Burakov.Machines.models.cars.MyCar;
+import ru.Burakov.Machines.models.messages.MessageModelRabbit;
 import ru.Burakov.Machines.models.response.CarsResponse;
 import ru.Burakov.Machines.repositories.DbCarBrandRepository;
 import ru.Burakov.Machines.repositories.DbCarRepository;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class DbCarDAO {
     private final DbCarBrandRepository carBrandRepository;
     private final DbCarRepository carRepository;
+    private final RabbitMessageServiceImpl rabbitMessageService;
     public void save(Long id, List<String> carsNames) {
         CarBrand carBrand = carBrandRepository.getReferenceById(id);
         for(String carName : carsNames) {
@@ -42,5 +44,9 @@ public class DbCarDAO {
         }
 
         return carsResponseList;
+    }
+
+    public String getPrice(String carName) {
+        return rabbitMessageService.send(carName);
     }
 }
