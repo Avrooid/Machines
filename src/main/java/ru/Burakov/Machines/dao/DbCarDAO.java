@@ -9,15 +9,14 @@ import ru.Burakov.Machines.repositories.DbCarBrandRepository;
 import ru.Burakov.Machines.repositories.DbCarRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class DbCarDAO {
     private final DbCarBrandRepository carBrandRepository;
     private final DbCarRepository carRepository;
+    private final RabbitProducerService rabbitMessageService;
     public void save(Long id, List<String> carsNames) {
         CarBrand carBrand = carBrandRepository.getReferenceById(id);
         for(String carName : carsNames) {
@@ -42,5 +41,9 @@ public class DbCarDAO {
         }
 
         return carsResponseList;
+    }
+
+    public String getPrice(String carName) {
+        return rabbitMessageService.send(carName);
     }
 }
