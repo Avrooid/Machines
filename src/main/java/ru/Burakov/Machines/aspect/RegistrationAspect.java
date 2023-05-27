@@ -37,9 +37,13 @@ public class RegistrationAspect {
     }
 
     @Around("execution(* ru.Burakov.Machines.controllers.*Controller.*(..))")
-    public void logExecutionTime(ProceedingJoinPoint joinPoint){
+    public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable{
         Timer timer = Timer.builder("requests_info.time").tag("method", joinPoint.getSignature().toString()).register(registry);
-        long start = System.currentTimeMillis();
-        timer.record(System.nanoTime() - start, TimeUnit.NANOSECONDS);
+        try {
+            return joinPoint.proceed();
+        } finally {
+            long start = System.currentTimeMillis();
+            timer.record(System.nanoTime() - start, TimeUnit.NANOSECONDS);
+        }
     }
 }

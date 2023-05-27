@@ -15,8 +15,8 @@ public class RabbitMessageServiceImpl implements RabbitProducerService{
 
     @Override
     public String send(String message) {
-        var temp = (byte[])rabbitTemplate.convertSendAndReceiveAsType("testExchange", "testRoutingKey",
-                message, new ParameterizedTypeReference<byte[]>() { });
+        var temp = (byte[])rabbitTemplate.convertSendAndReceive("testExchange", "testRoutingKey",
+                message);
         String response = new String(temp);
         log.info(response);
         return response;

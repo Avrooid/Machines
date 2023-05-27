@@ -19,17 +19,17 @@ public class DbCarController {
     private final DbCarDAO carDAO;
 
     @PostMapping("/add/{id}")
-    private void save(@PathVariable Long id, @RequestBody List<String> names) {
+    public void save(@PathVariable Long id, @RequestBody List<String> names) {
         carDAO.save(id, names);
     }
 
     @GetMapping("/getAll")
-    private List<CarsResponse> getInfo() {
+    public List<CarsResponse> getInfo() {
         return carDAO.getInfo();
     }
 
     @GetMapping("/{carName}/getPrice")
-    private CarPrice getCarPrice(@PathVariable String carName) {
+    public CarPrice getCarPrice(@PathVariable String carName) {
         return new CarPrice(carName, carDAO.getPrice(carName));
     }
 }
